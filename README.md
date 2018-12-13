@@ -1,11 +1,6 @@
-# Compilers 323 group project
+# Compilers 323 Rat18F Java Rewrite
+[![Build Status](https://travis-ci.org/Nathan-LS/Compilers323Java.svg?branch=master)](https://travis-ci.org/Nathan-LS/Compilers323Java)
+
+Rewrite of the Compilers 323 Rat18F group [project](https://github.com/Nathan-LS/Compilers323) using Java.
 ## Getting started
-Running our application through [Docker](https://hub.docker.com/r/nathanls/compilers323/) is easy! Create a text file in your current working directory that you wish to parse and run via Docker: 
 
-```docker run -it --rm -v ${PWD}:/app nathanls/compilers323 -i TestFile.txt```
-
-This will take the 'TestFile.txt' input file and run it through the compiler. The preprocessor, lexical analysis, and syntax analysis files will be generated in the current directory.
-
-To see all available arguments, run:
-
-```docker run -it --rm -v ${PWD}:/app nathanls/compilers323 --help```
