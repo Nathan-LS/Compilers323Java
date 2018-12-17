@@ -153,4 +153,16 @@ public class Lexer {
         return count;
     }
 
+    public int write_tokens(String output_file) throws IOException{
+        load_remaining();
+        int write_count = 0;
+        FileWriter fstream = new FileWriter(output_file);
+        for (Token t: tokens){
+            fstream.write(t.toString() + "\n");
+            write_count++;
+        }
+        fstream.close();
+        return write_count;
+    }
+
 }

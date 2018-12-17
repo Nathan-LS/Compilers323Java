@@ -21,6 +21,12 @@ public abstract class Token {
     public boolean is_symbol(String compare_char){
         return(Arrays.asList(this.reserved_symbols()).contains(compare_char));
     }
+
+    @Override
+    public String toString() {
+        return String.format("token: %-12s lexeme: %-12s" + "line: %s", getClass().getSimpleName(), lexeme, line_number);
+    }
+
     public static boolean is_empty_space(String compare_char){
         return Token.empty_space.contains(compare_char);
     }

@@ -80,4 +80,11 @@ class LexerTest {
         Lexer lex = new Lexer(new File(this.classLoader.getResource("LexerTextCases/test_File_1.txt").getFile()), false);
         assertEquals(lex.load_remaining(), 11);
     }
+
+    @Test
+    void write_tokens() throws IOException{
+        Lexer lex = new Lexer(new File(this.classLoader.getResource("LexerTextCases/test_File_1.txt").getFile()), false);
+        int wc = lex.write_tokens("tokens_test_File_1.txt");
+        assertEquals(wc, 11);
+    }
 }
