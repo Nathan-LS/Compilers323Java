@@ -5,6 +5,7 @@ import Tokens.*;
 
 import java.io.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.FileHandler;
 
@@ -25,7 +26,7 @@ public class Lexer {
     private boolean console_print;
     private int line_number = 1;
     private int current_index = 0;
-    private List<Token> tokens;
+    private List<Token> tokens = new ArrayList<Token>();
     private final int starting_state = 1;
 
 
@@ -112,6 +113,44 @@ public class Lexer {
             next_state = this.lex_state_mapper(next_char, current_state);
         }
         return this.lexer(token_str, next_state);
+    }
+
+    public Token lexer() throws IOException{
+        try{
+            return tokens.get(current_index);
+        }
+        catch (IndexOutOfBoundsException ex){
+            Token tok = lexer("", 1);
+            tokens.add(tok);
+            return tok;
+        }
+        finally {
+            current_index++;
+        }
+
+    }
+
+    public Token lexer_peek()throws IOException{
+        try{
+            return lexer();
+        }
+        finally {
+            current_index--;
+        }
+    }
+
+    public int load_remaining(){
+        int count = 0;
+        while (true){
+            try{
+                lexer();
+                count++;
+            }
+            catch (IOException ex){
+                break;
+            }
+        }
+        return count;
     }
 
 }
