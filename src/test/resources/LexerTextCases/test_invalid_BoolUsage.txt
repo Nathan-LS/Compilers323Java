@@ -1,0 +1,13 @@
+$$
+boolean a, b ,c;
+int v;
+a = true;
+b = false;
+c = a +b;
+
+
+
+a = true;
+b= false;
+c = 5;
+$$
