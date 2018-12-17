@@ -1,0 +1,14 @@
+$$
+int input;
+get(input);
+while (input ^= 0){
+    put(input);
+    if (input =< 5){
+        put(5);
+    }
+    else{
+        put(10);
+    }ifend
+    get(input);
+}whileend
+$$

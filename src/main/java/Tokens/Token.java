@@ -24,7 +24,7 @@ public abstract class Token {
 
     @Override
     public String toString() {
-        return String.format("token: %-12s lexeme: %-12s" + "line: %s", getClass().getSimpleName(), lexeme, line_number);
+        return String.format("token: %-12s lexeme: %-13s" + "line:%s", getClass().getSimpleName(), String.format("'%s'",lexeme), line_number);
     }
 
     public static boolean is_empty_space(String compare_char){

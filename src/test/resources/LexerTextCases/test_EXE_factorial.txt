@@ -1,0 +1,15 @@
+$$
+int input, result, step;
+get(input);
+while (input ^= 0){
+    step = input;
+    result = 1;
+    while (step ^= 0){
+        result = result * step;
+        step = step -1;
+    }whileend
+    put(result);
+    get(input);
+}whileend
+put(input);
+$$

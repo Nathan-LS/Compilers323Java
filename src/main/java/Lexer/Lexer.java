@@ -106,6 +106,9 @@ public class Lexer {
         next_char = (char) this.reader.read();
         if (next_char == '\r' || next_char == '\n'){
             this.line_number++;
+            if (next_char == '\r' && (char) file_peek() == '\n'){
+                this.reader.read();
+            }
         }
         int next_state = current_state;
         if (!Token.is_empty_space(String.valueOf(next_char))){
@@ -153,16 +156,16 @@ public class Lexer {
         return count;
     }
 
-    public int write_tokens(String output_file) throws IOException{
+    public File write_tokens(String output_file) throws IOException{
         load_remaining();
-        int write_count = 0;
-        FileWriter fstream = new FileWriter(output_file);
+        File write_file = new File(output_file);
+        write_file.createNewFile();
+        FileWriter fstream = new FileWriter(write_file);
         for (Token t: tokens){
             fstream.write(t.toString() + "\n");
-            write_count++;
         }
         fstream.close();
-        return write_count;
+        return write_file;
     }
 
 }

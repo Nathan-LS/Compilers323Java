@@ -84,7 +84,37 @@ class LexerTest {
     @Test
     void write_tokens() throws IOException{
         Lexer lex = new Lexer(new File(this.classLoader.getResource("LexerTextCases/test_File_1.txt").getFile()), false);
-        int wc = lex.write_tokens("tokens_test_File_1.txt");
-        assertEquals(wc, 11);
+        lex.write_tokens("tokens_test_File_1.txt");
+    }
+
+    @Test
+    void write_tokens_multi()throws IOException{
+        File TestCases = new File(this.classLoader.getResource("LexerTextCases").getFile());
+        for (File assert_file: TestCases.listFiles()){
+            if (assert_file.getName().startsWith("assert_")){
+                System.out.println(String.format("Testing file: %s",assert_file.getName()));
+                File input_file = new File(this.classLoader.getResource("LexerTextCases/" + assert_file.getName().replace("assert_", "")).getFile());
+                Lexer lex = new Lexer(input_file, false);
+                File test_output = lex.write_tokens("assert_test.txt");
+                BufferedReader reader_output = new BufferedReader(new FileReader(test_output));
+                BufferedReader reader_assert = new BufferedReader(new FileReader(assert_file));
+                try {
+                    String output_line, assert_line = null;
+                    while ((output_line = reader_output.readLine()) != null && (assert_line = reader_assert.readLine()) != null) {
+                        assertEquals(output_line, assert_line);
+                    }
+                    if (output_line == null && reader_assert.readLine() != null) {
+                        fail();
+                    }
+                    if (assert_line == null && reader_output.readLine() != null) {
+                        fail();
+                    }
+                }
+                finally {
+                    reader_output.close();
+                    reader_assert.close();
+                }
+            }
+        }
     }
 }

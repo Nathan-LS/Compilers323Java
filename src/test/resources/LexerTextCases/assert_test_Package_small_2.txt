@@ -1,0 +1,14 @@
+token: Separator    lexeme: '$$'         line:1
+token: Keyword      lexeme: 'int'        line:2
+token: Identifier   lexeme: 'a'          line:2
+token: Separator    lexeme: ','          line:2
+token: Identifier   lexeme: 'b'          line:2
+token: Separator    lexeme: ';'          line:2
+token: Identifier   lexeme: 'a'          line:3
+token: Operator     lexeme: '='          line:3
+token: Operator     lexeme: '-'          line:3
+token: Integer      lexeme: '1'          line:3
+token: Operator     lexeme: '+'          line:3
+token: Integer      lexeme: '1'          line:3
+token: Separator    lexeme: ';'          line:3
+token: Separator    lexeme: '$$'         line:4
